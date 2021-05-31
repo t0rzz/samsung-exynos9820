@@ -44,7 +44,7 @@ jobs:
                        +noatime                  \
                        +morosound                \
                        +boeffla_wl_blocker       \
-                       +fake_config              \
+                       +fake_config              
           2>&1 | tee config.info
 
       - name: Install gcc-aarch64-linux-gnu
