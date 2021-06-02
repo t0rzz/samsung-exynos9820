@@ -3,7 +3,7 @@ name: Build
 on: [push]
 
 env:
-  TOOLCHAIN: samsung
+  TOOLCHAIN: proton
   INSTALLER: yes
 
 jobs:
@@ -19,12 +19,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.7'
+          python-version: '3.6'
 
       - name: Kernel Configure
         run: |
           set -e -o pipefail
-          ./cruelbuild config os_patch_level=2099-12 model=${{ matrix.model }} name="ToR-4.4-FUE3" toolchain=$TOOLCHAIN +magisk +nohardening +nohardening2 +ttl +tcp_bbr +wireguard +cifs +sdfat +ntfs +nodebug -force_dex_wqhd +fp_boost +noatime +morosound +sched_conservative +sched_ondemand +sched_powersave +sched_performance +io_maple +io_fiops +io_zen +io_cfq +io_sio +io_anxiety +io_bfq +noksm +boeffla_wl_blocker +fake_config 2>&1 | tee config.info
+          ./cruelbuild config os_patch_level=2099-12 model=${{ matrix.model }} name="ToR-4.4-FUE3" toolchain=$TOOLCHAIN +magisk +nohardening +nohardening2 +ttl +tcp_bbr +wireguard +cifs +sdfat +ntfs +nodebug -force_dex_wqhd +fp_boost +noatime +morosound +io_maple +io_fiops +io_zen +io_cfq +io_sio +io_anxiety +io_bfq +noksm +boeffla_wl_blocker +fake_config 2>&1 | tee config.info
 
       - name: Install gcc-aarch64-linux-gnu
         if: env.TOOLCHAIN == 'system-gcc' || env.TOOLCHAIN == 'system-clang'
